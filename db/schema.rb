@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_04_154048) do
+ActiveRecord::Schema.define(version: 2022_06_06_095747) do
 
   create_table "beaches", force: :cascade do |t|
     t.string "name"
-    t.string "location"
     t.string "img_url"
     t.text "description"
     t.boolean "visited"
     t.integer "like_counter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "locations_id", null: false
+    t.index ["locations_id"], name: "index_beaches_on_locations_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -29,4 +30,11 @@ ActiveRecord::Schema.define(version: 2022_06_04_154048) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "beaches", "locations", column: "locations_id"
 end
