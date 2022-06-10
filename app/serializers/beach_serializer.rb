@@ -1,4 +1,4 @@
 class BeachSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :locations_id, :img_url, :description
+  attributes :name, :img_url, :description, :locations_id, :location
 end
